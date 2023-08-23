@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Quicksand:wght@600&display=swap');
+
+.biru {
+    color: rgb(24, 72, 135);
+}
+
+.kuning {
+    color: #FECF0A;
+}
+
+.abu {
+    color: #7c91a9;
+}
+
+html,
+body {
+    overflow-x: hidden
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand';
+    font-weight: 600;
+    margin: 0;
+}
+
+a,
+li,
+ol {
+    font-family: 'Lato';
+    margin: 0;
+}
+
+.card {
+    border: none;
+}
+
+.breadcrumb {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e6eaef;
+}
+
+p {
+    font-family: 'Lato';
+    margin: 0;
+   /* font-size:13pt; */
+}
+
+/* #kartu_kuning p {
+    font-size:12pt;
+} */
+
+/* #komisaris div .card p,
+#direksi div .card p {
+    font-size:12pt;
+} */
+
+#chartdiv{
+    height: 500px;
+}
+
+#navbar {
+    background-color: transparent;
+    transition: background-color 0.5s ease-in-out;
+}
+
+#navbar.scrolled {
+    background-color: rgb(24, 72, 135);
+    /* atau warna lain yang Anda inginkan */
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
+    /* atau shadow lain yang Anda inginkan */
+}
+
+
+.jumbotron {
+    position: relative;
+    overflow: hidden;
+    /* width: 100vw; */
+    height: 100vh;
+    margin: 0;
+}
+
+
+.jumbotron video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.52));
+    /* Hitam dengan tingkat transparansi 50% */
+    z-index: 0;
+}
+
+#home #content {
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    margin: 0;
+    z-index: 1;
+}
+
+#home #content h1 {
+    font-size: 38pt;
+}
+
+#home #content p {
+    margin-top: 28px;
+    font-size: 16pt;
+}
+
+div.row p.header mark {
+    letter-spacing: 5px;
+    background-color: #FECF0A;
+}
+
+#content {
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    height: 300px;
+    margin: 0;
+    z-index: 1;
+}
+
+.jumbotron-page {
+    position: relative;
+    height: 300px;
+    margin: 0;
+    background: url('../img/download.jpg');
+    background-attachment: fixed;
+    background-position: 0 -180px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.jumbotron-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.52));
+    /* Hitam dengan tingkat transparansi 50% */
+    z-index: -1;
+}
+
+
+.visi {
+    border-radius: 30px;
+    background-color: #1A2653;
+    color: white;
+    padding: 30px;
+}
+
+.visi p {
+    font-size: 16pt;
+}
+
+.misi {
+    border-radius: 30px;
+    background-color: #FECF0A;
+    padding: 30px;
+}
+
+.misi ol {
+    font-size: 16pt;
+    text-align: justify;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button.navbar-toggler {
+    border: none;
+}
+
+.navbar li {
+    display: inline-block;
+    margin: 0 6px;
+}
+
+.navbar .navbar-nav a {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 10pt;
+    color: #ffff;
+    display: block;
+    position: relative;
+    padding: 7px 0;
+}
+
+.navbar ul .dropdown-menu a {
+    color: black;
+}
+
+.navbar .navbar-nav a::before {
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #FECF0A;
+    transition: 0.5s transform ease;
+    transform: scale3d(0, 1, 1);
+    transform-origin: 0 50%;
+}
+
+.navbar .navbar-nav a:hover::before,
+.navbar .navbar-nav a.active::before {
+    transform: scale3d(1, 1, 1);
+    transform-origin: 50% 50%;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.datagrafik {
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    margin-top: -90px;
+    background-color: #FECF0A;
+}
+
+
+.parallax {
+    position: relative;
+    height: 450px;
+    margin: 0;
+    background: url('../img/download.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.parallax::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+
+#parallax-content {
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    height: 450px;
+    margin: 0;
+    z-index: 1;
+}
+
+
+#direksi div .card {
+    width: 350px; 
+}
+
+#komisaris div .card{
+    width: 350px;
+}
+
+#tata-nilai #akhlak p{
+    font-size:12pt;
+}
+
+#maps div.container iframe {
+    border-radius: 20px;
+}
+
+#strategi,
+#direksi,
+#komisaris,
+#visimisi,
+#tata-nilai,
+#home-layanan,
+#home-berita,
+#lingkup {
+    margin-top: 130px;
+}
+
+
+#home-layanan {
+    background-color: #b7c3d279;
+    /* background-color: #557EBF; */
+    padding: 90px 0;
+}
+
+#home-layanan div.card {
+    border-radius: 15px;
+    padding: 25px;
+}
+
+#home-layanan div.card p {
+    font-size: 10pt;
+
+}
+
+#home-layanan a.btn {
+    border: #1A2653 solid 1px !important;
+}
+
+
+#pengumuman p,
+ol {
+    text-align: justify;
+    font-size: 14pt;
+}
+
+#home-berita div img {
+    border-radius: 10px 10px 0px 0;
+    object-fit: cover;
+    height: 200px;
+}
+
+#home-berita div .card {
+    border-radius: 10px;
+    height: 450px;
+}
+
+#lingkup div.card .card-header {
+    padding:20px;
+    height:70px;
+    background-color: rgb(24, 72, 135);
+}
+ 
+
+footer {
+    /* background-color: #FECF0A; */
+    /* background-color: rgb(24, 72, 135); */
+    color: black;
+    margin-top:100px
+}
+
+
+footer p mark, #produk p mark {
+    /* background-color: #FECF0A; */
+    background-color: #1A2653;
+    color: white;
+    letter-spacing: 5px;
+}
+
+
+
+footer p {
+    font-size:12pt;
+}
+
+#login.container{
+    height: 100vh;
+}
+
+#login div.card {
+    max-width:90vh;
+    width:50vh;
+    border-radius:20px;
+}
+
+
+  
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #ebebeb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6b6b6b;
+    border-radius: 20px;
+}
+
+/* timeline */
+.timeline {
+    width: 100%
+}
+
+.timeline.timeline-one .timeline-item {
+    position: relative;
+    width: 50%;
+    margin-left: 50%;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    text-align: left
+}
+
+@media (max-width:575.98px) {
+    .timeline.timeline-one .timeline-item {
+        width: 100%;
+        margin-left: 0
+    }
+}
+
+.timeline.timeline-one .timeline-item img {
+    margin-bottom: 1.25rem
+}
+
+.timeline.timeline-one .timeline-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: .425rem;
+    margin-left: -.5rem;
+    border: .0625rem solid #dce6f3;
+    border-radius: 50%
+}
+
+.timeline.timeline-one .timeline-item:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -.1875rem;
+    width: .0625rem;
+    margin-top: 1.875rem;
+    margin-left: -.0625rem;
+    background-color: #dce6f3
+}
+
+.timeline.timeline-one .timeline-item:nth-child(2n+1) {
+    margin-left: 0;
+    padding-right: 1.5rem;
+    padding-left: 0;
+    text-align: right
+}
+
+@media (max-width:575.98px) {
+    .timeline.timeline-one .timeline-item:nth-child(2n+1) {
+        padding-right: 0;
+        padding-left: 1.5rem;
+        text-align: left
+    }
+}
+
+.timeline.timeline-one .timeline-item:nth-child(2n+1):after,
+.timeline.timeline-one .timeline-item:nth-child(2n+1):before {
+    right: 0;
+    left: auto
+}
+
+@media (max-width:575.98px) {
+
+    .timeline.timeline-one .timeline-item:nth-child(2n+1):after,
+    .timeline.timeline-one .timeline-item:nth-child(2n+1):before {
+        right: auto;
+        left: 0
+    }
+}
+
+.timeline.timeline-one .timeline-item:nth-child(2n+1):before {
+    margin-right: -.5rem
+}
+
+.timeline.timeline-one .timeline-item:nth-child(2n+1):after {
+    margin-right: -.0625rem
+}
+
+.timeline.timeline-one.dark .timeline-item:before {
+    border: .0625rem solid #b7c3d2
+}
+
+.timeline.timeline-one.dark .timeline-item:after {
+    background-color: #b7c3d2
+}
