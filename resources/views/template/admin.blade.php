@@ -26,6 +26,10 @@
                         <a class="nav-link {{ Route::is('admin.dirkom') ? 'active' : '' }}"
                             href="{{ route('admin.dirkom') }}">Direksi Komisaris</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.dirkom') ? 'active' : '' }}"
+                            href="{{ route('admin.dirkom') }}">Direksi Komisaris</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Produk & Layanan
