@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Dirkom; // Pastikan use statement ini ada
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -59,4 +60,45 @@ class AdminController extends Controller
     public function dirkom(){
         return view('admin.dirkom.index');
     }
+
+    public function add_Kom(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama' => 'required|string',
+            'jabatan' => 'required|string',
+            'foto_dirkom' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'dirkomSelect' => 'required',
+        ]);
+    
+        $tb_dirkom = new Dirkom();
+        $tb_dirkom->id_user = auth()->user()->id;
+        $tb_dirkom->nama = $validatedData['nama'];
+        $tb_dirkom->jabatan = $validatedData['jabatan'];
+        $tb_dirkom->level = $validatedData['dirkomSelect'];
+    
+        $file = $request->file('foto_dirkom');
+        $ext = $file->getClientOriginalExtension();
+        $fileName = $request->input('nama') . '_' . $ext;
+        Storage::putFileAs('images', $file, $fileName);
+    
+        $tb_dirkom->foto = $fileName;
+        
+        $tb_dirkom->save();
+    
+        $request->session()->flash('message', 'Data Berhasil Disimpan');
+        $request->session()->flash('title', 'Berhasil');
+        $request->session()->flash('icon', 'success');
+        
+        // return redirect()->route('dirkom');
+        if ($tb_dirkom->save()) {
+            return response()->json([
+                'message' => 'Data Berhasil Disimpan'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat menyimpan data'
+            ], 500);
+        }
+    }
+    
 }

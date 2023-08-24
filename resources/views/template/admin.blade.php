@@ -24,7 +24,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('') ? 'active' : '' }}"
-                            href="{{ route('') }}">Berita</a>
+                            href="">Berita</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('admin.dirkom') ? 'active' : '' }}"
