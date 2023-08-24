@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function(){
     Route::middleware(['auth.level:0'])->group(function(){
         Route::get('/admin', [AdminController::class, 'home'])->name('admin.home');
         Route::get('/admin/dirkom', [AdminController::class, 'dirkom'])->name('admin.dirkom');
+        Route::get('/admin/berita', [AdminController::class, 'berita'])->name('admin.berita');
+        Route::get('/admin/berita/add', [AdminController::class, 'berita'])->name('admin.berita');
     });
 
     Route::get('/logout/do', [AdminController::class, 'logoutDo'])->name('logout.do');

@@ -10,7 +10,7 @@
 
  <link rel="stylesheet" type="text/css" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
  <link rel="stylesheet" type="text/css" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
-
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
  <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js

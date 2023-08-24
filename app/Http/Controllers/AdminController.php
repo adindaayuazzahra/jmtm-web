@@ -59,4 +59,8 @@ class AdminController extends Controller
     public function dirkom(){
         return view('admin.dirkom.index');
     }
+
+    public function berita(){
+        return view('admin.berita.index');
+    }
 }
