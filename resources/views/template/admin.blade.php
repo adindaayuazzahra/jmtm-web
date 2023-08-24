@@ -22,10 +22,14 @@
                         <a class="nav-link {{ Route::is('admin.home') ? 'active' : '' }}"
                             href="{{ route('admin.home') }}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('') ? 'active' : '' }}"
-                            href="">Berita</a>
-                    </li>
+                    
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('admin.berita') ? 'active' : '' }}"
+                                href="{{ route('admin.berita')}}">Berita</a>
+                        </li>
+
+                
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('admin.dirkom') ? 'active' : '' }}"
                             href="{{ route('admin.dirkom') }}">Direksi Komisaris</a>
