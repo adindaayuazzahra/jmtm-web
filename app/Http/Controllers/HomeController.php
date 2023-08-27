@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function berita()
     {
-        $beritas = Berita::orderBy('created_at', 'desc')->paginate(16);
+        $beritas = Berita::orderBy('created_at', 'desc')->paginate(12);
         return view('page.berita', compact('beritas'));
     }
 
