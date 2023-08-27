@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('page.home');
+        $beritas = Berita::orderBy('created_at', 'desc')->limit(4)->get();
+        return view('page.home', compact('beritas'));
     }
 
     public function profil()
@@ -28,7 +30,14 @@ class HomeController extends Controller
 
     public function berita()
     {
-        return view('page.berita');
+        $beritas = Berita::orderBy('created_at', 'desc')->paginate(16);
+        return view('page.berita', compact('beritas'));
+    }
+
+    public function beritaDetail($id){
+        $berita = Berita::find($id);
+        // dd($berita);
+        return view('page.berita_detail', compact('berita'));
     }
 
     public function kontak()
