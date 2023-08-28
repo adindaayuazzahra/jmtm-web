@@ -17,7 +17,7 @@
                 <li class="breadcrumb-item"><strong>Profil Perusahaan</strong></li>
             </ol>
         </nav>
-        <h1 data-aos="fade-down" class="text-center mt-4 mb-2"><strong>Sekilas JMTM</strong></h1>
+        <h1 data-aos="fade-down" class="text-center mt-4 mb-2"><strong>SEKILAS JMTM</strong></h1>
         <p class="text-center">PT Jasamarga Tollroad Maintenance merupakan anak usaha dari PT Jasa Marga (Persero) Tbk, penyedia jalan bebas hambatan terbesar di Indonesia, di mana sebesar 99,82% kepemilikannya adalah milik Jasa Marga sebagai induk Perusahaan. Dikenal bergerak dalam bidang pemeliharaan jalan tol untuk mendukung lini bisnis utama Jasa Marga terutama dalam hal pemenuhan Standar Pelayanan Minimum (SPM) jalan tol, PT Jasamarga Tollroad Maintenance memiliki kantor pusat di Jakarta.</p>
     </div>
 </div>
@@ -69,7 +69,7 @@
     <div class="parallax mt-3">
         <div id="parallax-content" class="text-white  text-center d-flex align-items-center">
             <div class="container my-3">
-                <h1 class="my-3" data-aos="slide-down">Strategi Kami</h1>
+                <h1 class="my-3" data-aos="slide-down">STRATEGI KAMI</h1>
                 <p data-aos="slide-up"><em>"Dengan standar dan kontrol yang kami miliki inilah jaminan kualitas pemeliharaan konstruksi dan jalan tol yang kami kerjakan dapat melampaui Standar Pelayanan Minimum (SPM) dari Jasa Marga sebagai perusahaan induk. Jasamarga Tollroad Maintenance juga menjalin kerja sama dengan mitra bisnis strategis yang memiliki kemampuan dan keahlian di bidangnya. Pun segala kegiatan pemasaran dilaksanakan oleh manajemen yang profesional, handal dan terpercaya. Sehingga seiring berjalannya bisnis, Perusahaan dapat selalu mengedepankan prinsip-prinsip “Good Corporate Governance” dalam proyek atau pekerjaan, baik yang sedang maupun yang akan digarap di masa depan."</em></p>
             </div>
         </div>
@@ -80,34 +80,30 @@
 <section id="komisaris">
     <div class="container">
         <div class="row">
-            <h1 data-aos="fade-down" class="text-center mb-5"><strong>Dewan Komisaris</strong></h1>
+            <h1 data-aos="fade-down" class="text-center mb-5" ><strong>DEWAN KOMISARIS</strong></h1>
+            {{-- @foreach ($tb_dirkom as $item) --}}
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">George i.m.p manurung</h4>
-                    <p class="lh-sm">Komisaris Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $kom2->foto) }}">
+                    <h4 class="mb-2">{{$kom2->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$kom2->jabatan}}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $komut->foto) }}">
+                    <h4 class="mb-2">{{$komut->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$komut->jabatan}}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $kom3->foto) }}">
+                    <h4 class="mb-2">{{$kom3->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$kom3->jabatan}}</p>
                 </div>
             </div>
+            {{-- @endforeach --}}
         </div>
     </div>
 </section>
@@ -118,43 +114,18 @@
 <section id="direksi">
     <div class="container">
         <div class="row">
-            <h1 data-aos="fade-down" class="text-center mb-5"><strong>Direksi</strong></h1>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <h1 data-aos="fade-down" class="text-center mb-5"><strong>DIREKSI</strong></h1>
+            @foreach ($tb_dirkom as $item)
+            <div class="col-md-3 mb-4 d-flex justify-content-center" >
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
+                    <img src="{{ Storage::url('images/' . $item->foto) }}">
                     {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
+                    <h4 class="mb-2"> {{$item->nama}}</h4>
+                    <p class="lh-sm">{{$item->jabatan}}</p>
                     {{-- </div> --}}
                 </div>
             </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Dadan Waradia</h4>
-                    <p class="lh-sm">Direktur Manajemen Risiko, RQHSE, dan Penunjang Bisnis</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -163,7 +134,7 @@
 <section id="visimisi">
     <div class="container ">
         <div class="row">
-            <h1 data-aos="fade-down" class="text-center mb-5"><strong>Visi & Misi</strong></h1>
+            <h1 data-aos="fade-down" class="text-center mb-5"><strong>VISI & MISI</strong></h1>
             <div class="col-md-6 m-0 mb-2 " data-aos="slide-left">
                 <div class="card shadow visi h-100">
 
@@ -196,7 +167,7 @@
 <section id="tata-nilai">
     <div class="container">
         <div class="row g-2">
-            <h1 data-aos="fade-down" class="text-center mb-2"><strong>Tata Nilai</strong></h1>
+            <h1 data-aos="fade-down" class="text-center mb-2"><strong>TATA NILAI</strong></h1>
             <p class="text-center mb-5">
                 Tata nilai yang dimiliki oleh PT Jasamarga Tollroad Maintenance adalah Tata Nilai AKHLAK, Tata Nilai ini merupakan perwujudan dari sikap dan perilaku seluruh karyawan Jasamarga Tollroad Maintenance yang dilaksanakan untuk mendukung pencapaian tujuan perusahaan secara baik dan benar.
             </p>

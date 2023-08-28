@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Dirkom;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,12 @@ class HomeController extends Controller
 
     public function profil()
     {
-        return view('page.profil');
+        $tb_dirkom=Dirkom::whereBetween('level', [4, 7])->get();
+        // dd($tb_dirkom);
+        $komut = Dirkom::where('level', 1)->first();
+        $kom2 = Dirkom::where('level', 2)->first();
+        $kom3 = Dirkom::where('level', 3)->first();
+        return view('page.profil',compact('komut', 'kom2', 'kom3','tb_dirkom'));
     }
 
     public function pengadaan()

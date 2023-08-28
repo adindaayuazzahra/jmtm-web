@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,12 +40,19 @@ Route::middleware(['auth'])->group(function(){
     Route::middleware(['auth.level:0'])->group(function(){
         Route::get('/admin', [AdminController::class, 'home'])->name('admin.home');
         Route::get('/admin/dirkom', [AdminController::class, 'dirkom'])->name('admin.dirkom');
+        Route::post('/admin/komisaris/add/do', [AdminController::class, 'add_Kom'])->name('admin.komisaris.add.do');
+        Route::get('/admin/dirkom/edit/{id}', [AdminController::class, 'edit_dirkom'])->name('admin.edit_dirkom');
+        Route::post('/admin/dirkom/update/do/{id}', [AdminController::class, 'update_dirkom'])->name('admin.update_dirkom');
+        Route::get('/admin/dirkom/delete/do/{id}', [AdminController::class, 'delete_dirkom'])->name('admin.delete_dirkom');
+        // berita
         Route::get('/admin/berita', [AdminController::class, 'berita'])->name('admin.berita');
+        Route::get('/admin/berita/add', [AdminController::class, 'berita'])->name('admin.berita');
         Route::get('/admin/berita/add', [AdminController::class, 'beritaAdd'])->name('admin.berita.add');
         Route::post('/admin/berita/add/do', [AdminController::class, 'beritaAddDo'])->name('admin.berita.add.do');
         Route::get('/admin/berita/edit/{id}', [AdminController::class, 'beritaEdit'])->name('admin.berita.edit');
         Route::post('/admin/berita/edit/{id}/do', [AdminController::class, 'beritaEditDo'])->name('admin.berita.edit.do');
         Route::get('/admin/berita/delete/{id}/do', [AdminController::class, 'beritaDeleteDo'])->name('admin.berita.delete.do');
+
     });
 
     Route::get('/logout/do', [AdminController::class, 'logoutDo'])->name('logout.do');
