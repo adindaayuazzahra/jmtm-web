@@ -52,14 +52,6 @@ p {
    /* font-size:13pt; */
 }
 
-/* #kartu_kuning p {
-    font-size:12pt;
-} */
-
-/* #komisaris div .card p,
-#direksi div .card p {
-    font-size:12pt;
-} */
 
 #chartdiv{
     height: 500px;
@@ -358,6 +350,23 @@ ol {
     background-color: rgb(24, 72, 135);
 }
  
+
+#berita img{
+    border-radius:20px;
+}
+
+#berita div.deskripsi{
+    text-align: justify;
+}
+
+.multi-line-ellipsis {
+    position: relative;
+    height: 7.4em; /* Tinggi untuk 2 baris, sesuaikan sesuai kebutuhan */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Jumlah baris yang ingin Anda tampilkan */
+    -webkit-box-orient: vertical;
+}
 
 footer {
     /* background-color: #FECF0A; */

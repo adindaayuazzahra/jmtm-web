@@ -139,7 +139,6 @@
                     </div>
                     <form id="EditDirkomForm" action="{{ route('admin.update_dirkom', ['id' => $item->id]) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        @method('PUT') <!-- Tambahkan metode PUT -->
                         <div class="modal-body">
                             {{-- <input type="hidden" name="edit_id" id="edit_id"> --}}
                             <div class="container mt-5">
@@ -153,14 +152,12 @@
                                     
                                 </select> --}}
                                     <select class="form-select" id="edit_dirkomSelect" name="edit_dirkomSelect">
-                                        <option selected disabled value="{{ $item->id }}">{{ $item->jabatan }}
-                                        </option>
+                                        <option selected value="{{ $item->level }}">{{ $item->jabatan }}</option>
                                         <option value="1">Komisaris Utama</option>
                                         <option value="2">Komisaris Kedua</option>
                                         <option value="3">Komisaris Ketiga</option>
                                         <option value="4">Direktur Utama</option>
-                                        <option value="5">Direktur Manajemen Risiko, RQHSE, dan Penunjang Bisnis
-                                        </option>
+                                        <option value="5">Direktur Manajemen Risiko, RQHSE, dan Penunjang Bisnis</option>
                                         <option value="6">Direktur Proyek Konstruksi dan Pengembang Bisnis</option>
                                         <option value="7">Direktur Operasi</option>
                                         <!-- Add more options as needed -->
@@ -175,11 +172,6 @@
                             <div class="form-group">
                                 <label for="edit_jabatan">Jabatan</label>
                                 <input type="text" class="form-control" id="edit_jabatan" name="edit_jabatan"
-                                    value="{{ $item->jabatan }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_jabatan">Jabatan</label>
-                                <input type="text" class="form-control" id="edit_foto" name="edit_foto"
                                     value="{{ $item->jabatan }}">
                             </div>
                             <div class="form-group">

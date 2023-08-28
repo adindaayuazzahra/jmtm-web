@@ -80,34 +80,30 @@
 <section id="komisaris">
     <div class="container">
         <div class="row">
-            <h1 data-aos="fade-down" class="text-center mb-5"><strong>Dewan Komisaris</strong></h1>
+            <h1 data-aos="fade-down" class="text-center mb-5" ><strong>Dewan Komisaris</strong></h1>
+            {{-- @foreach ($tb_dirkom as $item) --}}
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">George i.m.p manurung</h4>
-                    <p class="lh-sm">Komisaris Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $kom2->foto) }}">
+                    <h4 class="mb-2">{{$kom2->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$kom2->jabatan}}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $komut->foto) }}">
+                    <h4 class="mb-2">{{$komut->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$komut->jabatan}}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
+                    <img src="{{ Storage::url('images/' . $kom3->foto) }}">
+                    <h4 class="mb-2">{{$kom3->nama}}</h4>
+                    <p class="lh-sm fs-5">{{$kom3->jabatan}}</p>
                 </div>
             </div>
+            {{-- @endforeach --}}
         </div>
     </div>
 </section>
@@ -119,42 +115,17 @@
     <div class="container">
         <div class="row">
             <h1 data-aos="fade-down" class="text-center mb-5"><strong>Direksi</strong></h1>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
+            @foreach ($tb_dirkom as $item)
+            <div class="col-md-3 mb-4 d-flex justify-content-center" >
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
+                    <img src="{{ Storage::url('images/' . $item->foto) }}">
                     {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
+                    <h4 class="mb-2"> {{$item->nama}}</h4>
+                    <p class="lh-sm">{{$item->jabatan}}</p>
                     {{-- </div> --}}
                 </div>
             </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Dadan Waradia</h4>
-                    <p class="lh-sm">Direktur Manajemen Risiko, RQHSE, dan Penunjang Bisnis</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
-                    <img src="{{asset('assets/img/dirut3.jpg')}}">
-                    {{-- <div class="card-body"> --}}
-                    <h4 class="mb-2">Rudy Hardiansyah</h4>
-                    <p class="lh-sm">Direktur Utama</p>
-                    {{-- </div> --}}
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

@@ -3,11 +3,14 @@
 
 <head>
     @include('particials.header')
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"> --}}
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg  navbar-light bg-warning">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg sticky-top  navbar-light bg-warning">
+        <div class="container-fluid px-4">
             <a class="navbar-brand logo" href="{{ route('admin.home') }}">
                 <img id="logo-light" src="{{ asset('assets/img-jmtm/logojmtmhitam.png') }}" height="45">
             </a>
@@ -22,19 +25,15 @@
                         <a class="nav-link {{ Route::is('admin.home') ? 'active' : '' }}"
                             href="{{ route('admin.home') }}">Dashboard</a>
                     </li>
-                    
-
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::is('admin.berita') ? 'active' : '' }}"
-                                href="{{ route('admin.berita')}}">Berita</a>
-                        </li>
-
-                
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('admin.berita') ? 'active' : '' }}"
+                            href="{{ route('admin.berita') }}">Berita</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('admin.dirkom') ? 'active' : '' }}"
                             href="{{ route('admin.dirkom') }}">Direksi Komisaris</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Produk & Layanan
                         </a>
@@ -45,7 +44,7 @@
                             <li><a class="dropdown-item" href="">Penyewaan Alat Berat</a></li>
                             <li><a class="dropdown-item" href="">Produk JMTM</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li> <a class="btn btn-danger rounded-pill" href="{{ route('logout.do') }}">Logout <i
@@ -56,8 +55,8 @@
     </nav>
 
     @yield('content')
-
-    <footer class="shadow bg-warning fixed-bottom p-0">
+    <br><br>
+    {{-- <footer class="shadow bg-warning p-0">
         <div class="container pt-3 pb-2">
             <div class="row g-1">
                 <div class="col-md-6">
@@ -77,10 +76,10 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
     @include('particials.assetJs')
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.js"></script>
     @yield('script')
-
 </body>
 
 </html>

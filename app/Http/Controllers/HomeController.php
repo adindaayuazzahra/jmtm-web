@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
+use App\Models\Dirkom;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('page.home');
+        $beritas = Berita::orderBy('created_at', 'desc')->limit(4)->get();
+        return view('page.home', compact('beritas'));
     }
 
     public function profil()
     {
-        return view('page.profil');
+        $tb_dirkom=Dirkom::whereBetween('level', [4, 7])->get();
+        // dd($tb_dirkom);
+        $komut = Dirkom::where('level', 1)->first();
+        $kom2 = Dirkom::where('level', 2)->first();
+        $kom3 = Dirkom::where('level', 3)->first();
+        return view('page.profil',compact('komut', 'kom2', 'kom3','tb_dirkom'));
     }
 
     public function pengadaan()
@@ -28,7 +36,14 @@ class HomeController extends Controller
 
     public function berita()
     {
-        return view('page.berita');
+        $beritas = Berita::orderBy('created_at', 'desc')->paginate(12);
+        return view('page.berita', compact('beritas'));
+    }
+
+    public function beritaDetail($id){
+        $berita = Berita::find($id);
+        // dd($berita);
+        return view('page.berita_detail', compact('berita'));
     }
 
     public function kontak()

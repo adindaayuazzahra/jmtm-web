@@ -1,31 +1,59 @@
 @extends('template.admin')
 @section('content')
-    <div class="container mt-5">
-        <div class="row">
+    <div class="container-fluid mt-3 p-5">
+        <div class="row shadow-lg p-3 rounded">
             <div class="col-12 d-flex align-items-center justify-content-between">
                 <h3 class="mb-4">Berita</h3>
-                <a href="" class="btn rounded-pill btn-primary">
+                <a href="{{ route('admin.berita.add') }}" class="btn rounded-pill btn-primary">
                     <i class="fa-solid fa-plus"></i> Tambah Berita
                 </a>
-                {{-- <button type="button" class="btn rounded-pill btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <i class="fa-solid fa-plus"></i> Tambah Berita
-                </button> --}}
             </div>
-            <table class="display table w-100" id="myTable">
+            <table id="myTable" class="myTable table w-100">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Tanggal Publish</th>
-                        <th scope="col">Action</th>
+                        <th>#</th>
+                        <th>Judul</th>
+                        <th>Foto</th>
+                        <th>Deskripsi</th>
+                        <th width="12%">Tanggal Publish</th>
+                        <th width="10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($beritas as $b)
+                        <tr>
+                            <td>{{ $i }}</td> @php $i++ @endphp
+                            <td>{{ $b->judul }}</td>
+                            <td><img src="{{ asset('assets/img/berita/' . $b->foto) }}" width="100px"></td>
+                            {{-- <td><img src="{{ asset('storage/app/images/'. $b->foto) }}" width="100"></td> --}}
+                            <td >
+                                    {!! trim($b->deskripsi, '{}') !!}
+                            </td>
+                            <td>{{ Carbon::parse($b->created_at)->format('d/m/Y - H:i') }}</td>
+                            <td><a href="{{ route('admin.berita.edit', ['id' => $b->id]) }}"
+                                    class="btn rounded-pill btn-warning">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a href="{{ route('admin.berita.delete.do', ['id' => $b->id]) }}"
+                                    class="btn rounded-pill btn-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.myTable').DataTable();
+        });
+    </script>
 @endsection

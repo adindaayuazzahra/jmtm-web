@@ -3,24 +3,28 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 
 // Modelss all
 use App\Models\DewanKomisaris;
+use App\Models\Berita;
 use App\Models\Dirkom; // Pastikan use statement ini ada
 use App\Models\User; // Pastikan use statement ini ada
 class AdminController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         if (Auth::check()) {
             return redirect()->route('admin.home');
         }
-        return view('admin.login');    
+        return view('admin.login');
     }
 
-    public function loginDo(Request $request){
+    public function loginDo(Request $request)
+    {
         request()->validate([
             'username' => 'required',
             'password' => 'required',
@@ -44,7 +48,6 @@ class AdminController extends Controller
         $request->session()->flash('title', 'Maaf');
         $request->session()->flash('icon', 'error');
         return redirect()->route('login');
-
     }
 
     public function logoutDo(Request $request)
@@ -58,10 +61,12 @@ class AdminController extends Controller
         return redirect()->route('login')->with('error', "Berhasil Logout");
     }
 
-    public function home(){
+    public function home()
+    {
         return view('admin.home');
     }
 
+   // ===================== DIRKOM CONTROLLER ======================
     public function dirkom(){
         $tb_dirkom = Dirkom::all(); // Ambil data dari model Dirkom
         // $users= User::all();
@@ -69,16 +74,14 @@ class AdminController extends Controller
         return view('admin.dirkom.index', compact('tb_dirkom'));
 
     }
-    public function berita(){
-        return view('admin.berita.index');
-    }
+   
 
     public function add_Kom(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string',
             'jabatan' => 'required|string',
-            'foto_dirkom' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'foto_dirkom' => 'required|image|mimes:jpeg,png',
             'dirkomSelect' => 'required',
         ]);
     
@@ -125,38 +128,179 @@ class AdminController extends Controller
     }
  
     public function edit_dirkom($id)
-{
-    $dirkom = Dirkom::find($id);
-
-    if (!$dirkom) {
-        return redirect()->route('admin.dirkom')->with('error', 'Data tidak ditemukan');
+    {
+        $edit_dirkomdata= Dirkom::find($id);
+        dd($edit_dirkomdata);
+        return view('admin.dirkom', compact('edit_dirkomdata'));
     }
 
-    return view('admin.edit_dirkom', compact('dirkom'));
-}
+    
+    public function update_dirkom(Request $request, $id)
+    {
+        // dd($request);
+        $request->validate([
+            'edit_nama' => 'required|string',
+            'edit_jabatan' => 'required|string',
+            'edit_foto' => 'image|mimes:jpeg,png,jpg',
+            'edit_dirkomSelect' => 'required',
+        ]);
 
-public function update_dirkom(Request $request, $id)
-{
-    $dirkom = Dirkom::find($id);
+        $edit_data_dirkom = Dirkom::find($id);
 
-    if (!$dirkom) {
-        return redirect()->route('admin.dirkom')->with('error', 'Data tidak ditemukan');
+        if ($request->edit_foto) {
+            // Misalnya Anda mendapatkan nama file foto lama dari database atau model
+            $oldFileName = $edit_data_dirkom->foto; // Gantikan dengan cara Anda mendapatkan nama file
+
+            // Cek apakah foto lama ada, dan hapus
+            if (File::exists(storage_path('app/public/images/' . $oldFileName))) {
+                File::delete(storage_path('app/public/images/' . $oldFileName));//uji
+            }
+
+            $file = $request->file('edit_foto');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+            $file->move(storage_path('app/public/images/'), $fileName);
+            $edit_data_dirkom->foto = $fileName;
+        }
+
+        $edit_data_dirkom->level = $request->edit_dirkomSelect;
+        $edit_data_dirkom->nama = $request->edit_nama;
+        $edit_data_dirkom->jabatan = $request->edit_jabatan;
+        $edit_data_dirkom->save();
+
+        $request->session()->flash('message', 'Anda Berhasil Mengedit Data!');
+        $request->session()->flash('title', 'Selamat');
+        $request->session()->flash('icon', 'success');
+        return redirect()->route('admin.dirkom');
+    }
+    
+    public function delete_dirkom(Request $request, $id)
+    {
+        $delete_data_dirkom = Dirkom::find($id);
+        // Misalnya Anda mendapatkan nama file foto lama dari database atau model
+        $oldFileName = $delete_data_dirkom->foto; // Gantikan dengan cara Anda mendapatkan nama file
+
+        // Cek apakah foto lama ada, dan hapus
+        if (File::exists(public_path('app/public/images/' . $oldFileName))) {
+            File::delete(public_path('app/public/images/' . $oldFileName));
+        }
+
+        $delete_data_dirkom->delete();
+        
+        $request->session()->flash('message', 'Anda Berhasil Menghapus Data!');
+        $request->session()->flash('title', 'Selamat');
+        $request->session()->flash('icon', 'success');
+        return redirect()->route('admin.dirkom');
+    }
+     // ===================== END DIRKOM CONTROLLER =====================
+
+
+    // ===================== BERITA CONTROLLER ==================
+
+    public function berita()
+    {
+        $beritas = Berita::orderBy('created_at', 'desc')->get();
+        return view('admin.berita.index', compact('beritas'));
     }
 
-    $validator = Validator::make($request->all(), [
-        'edit_nama' => 'required|string',
-        'edit_jabatan' => 'required|string',
-        'edit_dirkomSelect' => 'required',
-        'edit_foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
-
-    // Proses update data
-
-    if ($dirkom->save()) {
-        return redirect()->route('admin.dirkom')->with('success', 'Data berhasil diperbarui');
-    } else {
-        return redirect()->route('admin.edit_dirkom', ['id' => $id])
-            ->with('error', 'Terjadi kesalahan saat memperbarui data');
+    public function beritaAdd()
+    {
+        return view('admin.berita.form');
     }
-}
+
+    public function beritaAddDo(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'foto' => 'required|mimes:png,jpg',
+            'deskripsi' => 'required',
+        ]);
+
+        $file = $request->file('foto');
+        $ext = $file->getClientOriginalExtension();
+        $fileName = time().'.' . $ext;
+        $file->move(public_path('assets/img/berita'), $fileName);
+
+        $berita = new Berita();
+        $berita->id_user = auth()->user()->id;
+        $berita->judul = $request->judul;
+        $berita->deskripsi = $request->deskripsi;
+        $berita->foto = $fileName;
+        $berita->save();
+
+        $request->session()->flash('message', 'Anda Berhasil Menambahkan Data!');
+        $request->session()->flash('title', 'Selamat');
+        $request->session()->flash('icon', 'success');
+        return redirect()->route('admin.berita');
+    }
+
+    public function beritaEdit($id)
+    {
+        $berita = Berita::find($id);
+        return view('admin.berita.form', compact('berita'));
+    }
+
+    public function beritaEditDo(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        $berita = Berita::find($id);
+
+        if ($request->foto) {
+            // Misalnya Anda mendapatkan nama file foto lama dari database atau model
+            $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
+
+            // Cek apakah foto lama ada, dan hapus
+            if (File::exists(public_path('assets/img/berita/' . $oldFileName))) {
+                File::delete(public_path('assets/img/berita/' . $oldFileName));
+            }
+
+            $file = $request->file('foto');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $ext;
+            $file->move(public_path('assets/img/berita'), $fileName);
+            $berita->foto = $fileName;
+        }
+
+        $berita->judul = $request->judul;
+        $berita->deskripsi = $request->deskripsi;
+        $berita->save();
+
+        $request->session()->flash('message', 'Anda Berhasil Mengedit Data!');
+        $request->session()->flash('title', 'Selamat');
+        $request->session()->flash('icon', 'success');
+        return redirect()->route('admin.berita');
+    }
+
+    public function beritaDeleteDo(Request $request, $id)
+    {
+        $berita = Berita::find($id);
+        // Misalnya Anda mendapatkan nama file foto lama dari database atau model
+        $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
+
+        // Cek apakah foto lama ada, dan hapus
+        if (File::exists(public_path('assets/img/berita/' . $oldFileName))) {
+            File::delete(public_path('assets/img/berita/' . $oldFileName));
+        }
+
+        $berita->delete();
+        
+        $request->session()->flash('message', 'Anda Berhasil Menghapus Data!');
+        $request->session()->flash('title', 'Selamat');
+        $request->session()->flash('icon', 'success');
+        return redirect()->route('admin.berita');
+    }
+
+    
+
+
+
+
+ 
+
+    
+   
 }
