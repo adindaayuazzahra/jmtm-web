@@ -25,7 +25,7 @@
         <div data-aos="zoom-in">
             <h2 class="biru">{{ $berita->judul }}</h2>
             <p class="text-muted mt-2">jmtm.co.id - {{ Carbon::parse($berita->created_at)->format('d/m/Y, H:i') }}</p>
-            <img src="{{ asset('assets/img/berita/' . $berita->foto) }}" class="mt-3 w-100">
+            <img src="{{ Storage::url('berita/' . $berita->foto) }}" class="mt-3 w-100">
             <div class="fs-5 mt-4 deskripsi">
                 {!! trim($berita->deskripsi, '{}') !!}
             </div>

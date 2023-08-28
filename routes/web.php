@@ -13,7 +13,9 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+    });
 Route::get('/', [Homecontroller::class, 'home'])->name('home');
 Route::get('/bobcat', [Homecontroller::class, 'bobcat'])->name('bobcat');
 Route::get('/profil-perusahaan', [Homecontroller::class, 'profil'])->name('profil');

@@ -87,7 +87,8 @@ class AdminController extends Controller
         $file = $request->file('foto');
         $ext = $file->getClientOriginalExtension();
         $fileName = time().'.' . $ext;
-        $file->move(public_path('assets/img/berita'), $fileName);
+        $file->move(storage_path('app/public/berita/'), $fileName);
+        // $file->move(public_path('assets/img/berita'), $fileName);
 
         $berita = new Berita();
         $berita->id_user = auth()->user()->id;
@@ -122,14 +123,14 @@ class AdminController extends Controller
             $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
 
             // Cek apakah foto lama ada, dan hapus
-            if (File::exists(public_path('assets/img/berita/' . $oldFileName))) {
-                File::delete(public_path('assets/img/berita/' . $oldFileName));
+            if (File::exists(storage_path('app/public/berita/' . $oldFileName))) {
+                File::delete(storage_path('app/public/berita/' . $oldFileName));
             }
 
             $file = $request->file('foto');
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
-            $file->move(public_path('assets/img/berita'), $fileName);
+            $file->move(storage_path('app/public/berita/'), $fileName);
             $berita->foto = $fileName;
         }
 
@@ -150,8 +151,8 @@ class AdminController extends Controller
         $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
 
         // Cek apakah foto lama ada, dan hapus
-        if (File::exists(public_path('assets/img/berita/' . $oldFileName))) {
-            File::delete(public_path('assets/img/berita/' . $oldFileName));
+        if (File::exists(storage_path('app/public/berita/' . $oldFileName))) {
+            File::delete(storage_path('app/public/berita/' . $oldFileName));
         }
 
         $berita->delete();

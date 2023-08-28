@@ -25,7 +25,7 @@
             @foreach ($beritas as $berita)
                 <div class="col-md-3">
                     <div class="card shadow-lg">
-                        <img src="{{ asset('assets/img/berita/' . $berita->foto) }}" class="card-img-top" alt="...">
+                        <img src="{{ Storage::url('berita/' . $berita->foto) }}" class="card-img-top" alt="...">
                         <div class="card-body p-4 d-flex justify-content-between flex-column">
                             <div>
                                 <p class="card-text mb-1"><small

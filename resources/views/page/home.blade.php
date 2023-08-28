@@ -1,8 +1,6 @@
 @extends('template.web')
 @section('title', 'Beranda')
 @section('content')
-
-
     <div class="jumbotron" id="home">
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
             <source src="{{ asset('assets/img/vidcomp.mp4') }}" type="video/mp4">
@@ -204,7 +202,7 @@
                 @foreach ($beritas as $berita)
                     <div class="col-md-3">
                         <div class="card shadow-lg">
-                            <img src="{{ asset('assets/img/berita/' . $berita->foto) }}" class="card-img-top"
+                            <img src="{{ Storage::url('berita/' . $berita->foto) }}" class="card-img-top"
                                 alt="...">
                             <div class="card-body p-4 d-flex justify-content-between flex-column">
                                 <div>
