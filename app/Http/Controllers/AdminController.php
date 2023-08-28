@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Dirkom; // Pastikan use statement ini ada
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
+
+// Modelss all
+use App\Models\DewanKomisaris;
+use App\Models\Dirkom; // Pastikan use statement ini ada
+use App\Models\User; // Pastikan use statement ini ada
 class AdminController extends Controller
 {
     public function login(){
@@ -58,7 +63,10 @@ class AdminController extends Controller
     }
 
     public function dirkom(){
-        return view('admin.dirkom.index');
+        $tb_dirkom = Dirkom::all(); // Ambil data dari model Dirkom
+        // $users= User::all();
+        //   dd($tb_dirkom,$users); // Debugging
+        return view('admin.dirkom.index', compact('tb_dirkom'));
 
     }
     public function berita(){
@@ -67,43 +75,88 @@ class AdminController extends Controller
 
     public function add_Kom(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|string',
             'jabatan' => 'required|string',
             'foto_dirkom' => 'required|image|mimes:jpeg,png,jpg,gif',
             'dirkomSelect' => 'required',
         ]);
     
-        $tb_dirkom = new Dirkom();
-        $tb_dirkom->id_user = auth()->user()->id;
-        $tb_dirkom->nama = $validatedData['nama'];
-        $tb_dirkom->jabatan = $validatedData['jabatan'];
-        $tb_dirkom->level = $validatedData['dirkomSelect'];
-    
-        $file = $request->file('foto_dirkom');
-        $ext = $file->getClientOriginalExtension();
-        $fileName = $request->input('nama') . '_' . $ext;
-        Storage::putFileAs('images', $file, $fileName);
-    
-        $tb_dirkom->foto = $fileName;
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $errors->add('pdf', true);
+            return redirect()->route('admin.dirkom')->withErrors($errors)->withInput();
+        } 
         
-        $tb_dirkom->save();
+        $validatedData = $validator->validated(); // Menggunakan method validated() pada objek validator
     
-        $request->session()->flash('message', 'Data Berhasil Disimpan');
-        $request->session()->flash('title', 'Berhasil');
-        $request->session()->flash('icon', 'success');
-        
-        // return redirect()->route('dirkom');
-        if ($tb_dirkom->save()) {
-            return response()->json([
-                'message' => 'Data Berhasil Disimpan'
-            ]);
+        $levelExists = Dirkom::where('level', $validatedData['dirkomSelect'])->exists();
+    
+        if ($levelExists) {
+            $request->session()->flash('message', 'Data dengan level yang sama sudah ada.');
+            $request->session()->flash('title', 'Gagal');
+            $request->session()->flash('icon', 'error');
         } else {
-            return response()->json([
-                'message' => 'Terjadi kesalahan saat menyimpan data'
-            ], 500);
+            $tb_dirkom = new Dirkom();
+            $tb_dirkom->id_user = auth()->user()->id;
+            $tb_dirkom->nama = $validatedData['nama'];
+            $tb_dirkom->jabatan = $validatedData['jabatan'];
+            $tb_dirkom->level = $validatedData['dirkomSelect'];
+        
+            $file = $request->file('foto_dirkom');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = $validatedData['nama'] . '.' . $ext; // Menggunakan $validatedData['nama'] daripada $request->input('nama')
+            Storage::putFileAs('public/images', $file, $fileName);
+        
+            $tb_dirkom->foto = $fileName;
+        
+            if ($tb_dirkom->save()) {
+                $request->session()->flash('message', 'Data Berhasil Disimpan');
+                $request->session()->flash('title', 'Berhasil');
+                $request->session()->flash('icon', 'success');
+            } else {
+                $request->session()->flash('message', 'Terjadi kesalahan saat menyimpan data');
+                $request->session()->flash('title', 'Gagal');
+                $request->session()->flash('icon', 'error');
+            }
         }
+        
+        return redirect()->route('admin.dirkom');
     }
-    
-    
+ 
+    public function edit_dirkom($id)
+{
+    $dirkom = Dirkom::find($id);
+
+    if (!$dirkom) {
+        return redirect()->route('admin.dirkom')->with('error', 'Data tidak ditemukan');
+    }
+
+    return view('admin.edit_dirkom', compact('dirkom'));
+}
+
+public function update_dirkom(Request $request, $id)
+{
+    $dirkom = Dirkom::find($id);
+
+    if (!$dirkom) {
+        return redirect()->route('admin.dirkom')->with('error', 'Data tidak ditemukan');
+    }
+
+    $validator = Validator::make($request->all(), [
+        'edit_nama' => 'required|string',
+        'edit_jabatan' => 'required|string',
+        'edit_dirkomSelect' => 'required',
+        'edit_foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Proses update data
+
+    if ($dirkom->save()) {
+        return redirect()->route('admin.dirkom')->with('success', 'Data berhasil diperbarui');
+    } else {
+        return redirect()->route('admin.edit_dirkom', ['id' => $id])
+            ->with('error', 'Terjadi kesalahan saat memperbarui data');
+    }
+}
 }

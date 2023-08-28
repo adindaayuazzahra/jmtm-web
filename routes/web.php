@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/admin/komisaris/add/do', [AdminController::class, 'add_Kom'])->name('admin.komisaris.add.do');
         Route::get('/admin/berita', [AdminController::class, 'berita'])->name('admin.berita');
         Route::get('/admin/berita/add', [AdminController::class, 'berita'])->name('admin.berita');
+        Route::get('/admin/dirkom/edit/{id}', [AdminController::class, 'edit_dirkom'])->name('admin.edit_dirkom');
+        Route::post('/admin/dirkom/update/{id}', [AdminController::class, 'update_dirkom'])->name('admin.update_dirkom');
+        Route::get('/admin/dirkom/delete/{id}', [AdminController::class, 'dirkom'])->name('admin.delete_dirkom');
     });
 
     Route::get('/logout/do', [AdminController::class, 'logoutDo'])->name('logout.do');
