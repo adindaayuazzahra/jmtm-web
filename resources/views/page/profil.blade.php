@@ -82,6 +82,7 @@
         <div class="row">
             <h1 data-aos="fade-down" class="text-center mb-5" ><strong>DEWAN KOMISARIS</strong></h1>
             {{-- @foreach ($tb_dirkom as $item) --}}
+            @if ($kom2)
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
                     <img src="{{ Storage::url('images/' . $kom2->foto) }}">
@@ -89,6 +90,8 @@
                     <p class="lh-sm fs-5">{{$kom2->jabatan}}</p>
                 </div>
             </div>
+            @endif
+            @if ($komut)     
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
                     <img src="{{ Storage::url('images/' . $komut->foto) }}">
@@ -96,6 +99,8 @@
                     <p class="lh-sm fs-5">{{$komut->jabatan}}</p>
                 </div>
             </div>
+            @endif
+            @if ($kom3)    
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div data-aos="slide-up" class="card h-100 text-center p-4 rounded-4 shadow">
                     <img src="{{ Storage::url('images/' . $kom3->foto) }}">
@@ -103,6 +108,7 @@
                     <p class="lh-sm fs-5">{{$kom3->jabatan}}</p>
                 </div>
             </div>
+            @endif
             {{-- @endforeach --}}
         </div>
     </div>
