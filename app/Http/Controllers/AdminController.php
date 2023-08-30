@@ -181,8 +181,8 @@ class AdminController extends Controller
         $oldFileName = $delete_data_dirkom->foto; // Gantikan dengan cara Anda mendapatkan nama file
 
         // Cek apakah foto lama ada, dan hapus
-        if (File::exists(public_path('app/public/images/' . $oldFileName))) {
-            File::delete(public_path('app/public/images/' . $oldFileName));
+        if (File::exists(storage_path('app/public/images/' . $oldFileName))) {
+            File::delete(storage_path('app/public/images/' . $oldFileName));//uji
         }
 
         $delete_data_dirkom->delete();
@@ -219,7 +219,7 @@ class AdminController extends Controller
         $file = $request->file('foto');
         $ext = $file->getClientOriginalExtension();
         $fileName = time().'.' . $ext;
-        $file->move(storage_path('app/public/berita/'), $fileName);
+        $file->move(storage_path('app/public/images/'), $fileName);
         // $file->move(public_path('assets/img/berita'), $fileName);
 
         $berita = new Berita();
@@ -255,14 +255,14 @@ class AdminController extends Controller
             $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
 
             // Cek apakah foto lama ada, dan hapus
-            if (File::exists(storage_path('app/public/berita/' . $oldFileName))) {
-                File::delete(storage_path('app/public/berita/' . $oldFileName));
+            if (File::exists(storage_path('app/public/images/' . $oldFileName))) {
+                File::delete(storage_path('app/public/images/' . $oldFileName));
             }
 
             $file = $request->file('foto');
             $ext = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $ext;
-            $file->move(storage_path('app/public/berita/'), $fileName);
+            $file->move(storage_path('app/public/images/'), $fileName);
             $berita->foto = $fileName;
         }
 
@@ -283,8 +283,8 @@ class AdminController extends Controller
         $oldFileName = $berita->foto; // Gantikan dengan cara Anda mendapatkan nama file
 
         // Cek apakah foto lama ada, dan hapus
-        if (File::exists(storage_path('app/public/berita/' . $oldFileName))) {
-            File::delete(storage_path('app/public/berita/' . $oldFileName));
+        if (File::exists(storage_path('app/public/images/' . $oldFileName))) {
+            File::delete(storage_path('app/public/images/' . $oldFileName));
         }
 
         $berita->delete();
