@@ -52,7 +52,7 @@
 @endsection
 
 @section('script')
-    <script>
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
         $(document).ready(function() {
             $('.myTable').DataTable();
         });

@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div id="3d" class="col-md-7">
-                    <embed src="{{ route('bobcat') }}" data-aos="slide-up" type="" class="w-100" height="500px"
+                    <embed nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht" src="{{ route('bobcat') }}" data-aos="slide-up" type="" class="w-100" height="500px"
                         width="100%">
                 </div>
             </div>

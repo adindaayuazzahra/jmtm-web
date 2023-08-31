@@ -9,16 +9,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ovo&family=Work+Sans:wght@500;600;700;800&display=swap"
         rel="stylesheet">
     {{-- sweetalert --}}
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/css/mystyle.css')}}">
     <style>
         body {
             background-color: #fee440;
             font-family: 'Ovo', serif;
+
+        }
+
+        .card {
+            width: 400px
+        }
+
+        .container {
+            height: 100vh;
+
         }
 
         h1,
@@ -81,7 +90,7 @@
 <body class="gradient">
     <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 100 100">
         <defs>
-            <style>
+            <style nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
                 @keyframes rotate {
                     100% {
                         transform: rotate(360deg);
@@ -119,13 +128,8 @@
             d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z" />
     </svg>
 
-    {{-- <div class="links">
-        <a href="https://www.youtube.com/watch?v=0yp9-_NKPC0&t" target="_blank">video tutorial<img class="icon" src="https://ksenia-k.com/img/icons/link.svg"></a>
-        <a href="https://dev.to/uuuuuulala/making-background-blob-animation-in-just-15kb-step-by-step-guide-2482" target="_blank">text version<img class="icon" src="https://ksenia-k.com/img/icons/link.svg"></a>
-    </div> --}}
-
-    <div id="login" class="container d-flex align-items-center justify-content-center">
-        <div class="card px-4 py-5 shadow-lg">
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="card px-4 py-5 shadow-lg ">
             <div class="d-flex justify-content-center my-3">
                 <img src="{{ asset('assets/img-jmtm/logojmtm.png') }}" width="200px">
             </div>
@@ -133,7 +137,7 @@
                 <h4><strong>Login Admin</strong></h4>
             </div>
 
-            <form action="{{route('login.do')}}" method="POST">
+            <form action="{{ route('login.do') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-floating mb-3 d-block">
                     <input type="text" class="form-control  @error('username') is-invalid @enderror" id="username"
@@ -156,8 +160,7 @@
                     @enderror
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-lg btn-sub"
-                        style="background-color:#873ffd;color:white;">Login</button>
+                    <button type="submit" class="btn btn-lg btn-primary">Login</button>
                 </div>
             </form>
             <div class="d-flex justify-content-center mt-4">
@@ -173,12 +176,13 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
     </script>
 
+
     {{-- sweetalert --}}
-    <script src="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js
-        "></script>
+    {{-- sweetalert Notif --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js
+    " nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht"></script>
     @if (session('message'))
-        <script>
+        <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
             Swal.fire({
                 timer: 2000,
                 icon: '{{ session('icon') }}',

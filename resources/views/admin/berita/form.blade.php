@@ -57,8 +57,8 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
+<script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht" src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
         ClassicEditor
             .create(document.querySelector('#editor'))
             .catch(error => {

@@ -4,8 +4,10 @@
 <head>
     @include('particials.header')
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"> --}}
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.css" rel="stylesheet">
+    {{-- sweetalert --}}
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -78,7 +80,20 @@
         </div>
     </footer> --}}
     @include('particials.assetJs')
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.js"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js" nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht"></script>
+    @if (session('message'))
+        <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
+            Swal.fire({
+                timer: 2000,
+                icon: '{{ session('icon') }}',
+                title: '{{ session('title') }}',
+                text: '{{ session('message') }}',
+            });
+        </script>
+    @endif
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht"
+        src="https://cdn.datatables.net/v/bs5/dt-1.13.6/fh-3.4.0/r-2.5.0/datatables.min.js"></script>
     @yield('script')
 </body>
 

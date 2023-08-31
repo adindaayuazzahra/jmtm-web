@@ -128,7 +128,7 @@
 
 @section('script')
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <script>
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
         $(document).ready(function() {
             var owl = $('.owl-carousel');
             owl.owlCarousel({

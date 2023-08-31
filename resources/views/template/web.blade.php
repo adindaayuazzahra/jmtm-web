@@ -148,6 +148,24 @@
         </div>
     </footer>
     @include('particials.assetJs')
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
+        window.addEventListener("scroll", function() {
+            var navbar = document.getElementById('navbar');
+    
+            if (window.pageYOffset > 0) {
+                navbar.classList.add("scrolled");
+    
+            } else {
+                navbar.classList.remove("scrolled");
+    
+            }
+        });
+    
+    
+        AOS.init({
+            duration: 900
+        });
+    </script>
     @yield('script')
 
 </body>

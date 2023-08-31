@@ -190,68 +190,11 @@
             </div>
         </div>
     @endforeach
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
-    </script>
-
-    {{-- sweetalert --}}
-    <script src="
-                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js
-                "></script>
-    @if (session('message'))
-        <script>
-            Swal.fire({
-                timer: 2000,
-                icon: '{{ session('icon') }}',
-                title: '{{ session('title') }}',
-                text: '{{ session('message') }}',
-            });
-        </script>
-    @endif
-    <!-- Tambahkan Axios library jika belum ada -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    {{-- <script>
-    document.getElementById('addDirkomForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Menghentikan submit form standart
-        const form = event.target;
-        const formData = new FormData(form);
-
-        axios.post(form.action, formData)
-            .then(response => {
-                // Tampilkan notifikasi sukses
-                document.getElementById('notification').innerHTML = `
-                    <div class="alert alert-success" role="alert">
-                        ${response.data.message}
-                    </div>
-                `;
-                form.reset(); // Clear form setelah berhasil
-            })
-            .catch(error => {
-                // Tampilkan notifikasi kesalahan
-                if (error.response.data.errors) {
-                    const errors = Object.values(error.response.data.errors).join('<br>');
-                    document.getElementById('notification').innerHTML = `
-                        <div class="alert alert-danger" role="alert">
-                            ${errors}
-                        </div>
-                    `;
-                } else {
-                    document.getElementById('notification').innerHTML = `
-                        <div class="alert alert-danger" role="alert">
-                            ${error.response.data.message}
-                        </div>
-                    `;
-                    window.location.reload();
-                }
-            });
-    });
-</script> --}}
 @endsection
 
 @section('script')
     @if ($errors->has('pdf'))
-        <script>
+        <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
             $(document).ready(function() {
                 $('#Add_dirkom').modal('show');
             });

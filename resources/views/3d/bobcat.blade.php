@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <style>
+    <style nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht">
         body,
         .container {
             background-color: transparent;
@@ -22,7 +22,7 @@
 <body>
 
     <div id="container"></div>
-    <script type="importmap">
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht" type="importmap">
         {
 				"imports": {
 					"three": "./three/build/three.module.js",
@@ -31,7 +31,7 @@
 			}
 	</script>
 
-    <script type="module">
+    <script nonce="YXN1YmFuZ2V0MTIzNGhmaGZoZmpzb3ht" type="module">
 
         import * as THREE from 'three';
 
