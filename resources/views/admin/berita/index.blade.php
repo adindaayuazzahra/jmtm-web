@@ -28,7 +28,7 @@
                             <td>{{ $i }}</td> @php $i++ @endphp
                             <td>{{ $b->judul }}</td>
                             {{-- <td><img src="{{ asset('assets/img/berita/' . $b->foto) }}" width="100px"></td> --}}
-                            <td><img src="{{ Storage::url('berita/' . $b->foto) }}" width="100px"></td>
+                            <td><img src="{{ Storage::url('images/' . $b->foto) }}" width="100px"></td>
                             {{-- <td><img src="{{ asset('storage/app/images/'. $b->foto) }}" width="100"></td> --}}
                             <td >
                                     {!! trim($b->deskripsi, '{}') !!}
