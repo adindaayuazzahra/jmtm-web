@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-6 d-flex justify-content-start align-items-center">
                                     <div>
-                                        <p>1000 Ton per Jam</p>
+                                        <p>1200 Ton per Hari</p>
                                         <h5><strong>Asphalt</strong></h5>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-6 d-flex justify-content-start align-items-center">
                                     <div>
-                                        <p>6 Buah</p>
+                                        <p>108 Buah</p>
                                         <h5><strong>Alat Berat</strong></h5>
                                     </div>
                                 </div>

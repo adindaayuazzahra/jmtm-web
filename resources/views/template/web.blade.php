@@ -3,7 +3,7 @@
 
 <head>
     @include('particials.header')
-    <link rel="preload" href="{{asset('assets/bobcat2.glb')}}" as="fetch" type="model/gltf-binary">
+    {{-- <link rel="preload" href="{{asset('assets/bobcat2.glb')}}" as="fetch" type="model/gltf-binary"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}">
 </head>
 
