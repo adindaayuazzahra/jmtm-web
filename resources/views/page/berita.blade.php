@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="container mt-5" id="home-berita">
-        <div data-aos="zoom-in" class="row grid gap-0 row-gap-3">
+        <div data-aos="zoom-in" class="row grid gap-0 row-gap-4">
             @foreach ($beritas as $berita)
                 <div class="col-md-3">
                     <div class="card shadow-lg">
